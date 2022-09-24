@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: my-deploy
+  labels:
+    practice: practice3
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      practice: practice3
+      tier: cal-webserver
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: my-metadata
+      labels:
+        practice: practice3
+        tier: cal-webserver
+    spec:
+      containers:
+        - name: my-store-prods
+          image: calebespinoza/store-products:2.0
+          ports:
+            - containerPort: 80

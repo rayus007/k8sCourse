@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replica-set
+  labels:
+    environment: dev
+    practice: practice3
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      practice: practice3
+  template:
+    metadata:
+      name: my-main-template
+      labels:
+        practice: practice3
+    spec:
+      containers:
+        - name: my-jenkins
+          image: jenkins/jenkins:jdk11
+          ports:
+            - containerPort: 8080
